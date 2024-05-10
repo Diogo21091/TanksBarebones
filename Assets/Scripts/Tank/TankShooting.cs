@@ -17,6 +17,8 @@ public class TankShooting : MonoBehaviour
     private float m_ChargeSpeed;         
     private bool m_Fired;
 
+    [SerializeField] private AudioSource m_ChargingSound;
+
     private void OnEnable()
     {
         m_CurrentLaunchForce = m_MinLaunchForce;
@@ -48,6 +50,9 @@ public class TankShooting : MonoBehaviour
             // start charging
             m_Fired = false;
             m_CurrentLaunchForce = m_MinLaunchForce;
+
+            //Play charging shot sound
+            m_ChargingSound.Play();
         }
         else if(Input.GetButton(m_FireButton) && !m_Fired)
         {

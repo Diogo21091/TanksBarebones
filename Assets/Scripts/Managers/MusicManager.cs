@@ -6,8 +6,7 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioSource m_BaseBGM;
     [SerializeField] private AudioSource m_TenseBGM;
     [SerializeField] private AudioSource m_LowEnergyStinger;
-
-    public TankHealth health;
+    [SerializeField] private AudioSource m_DeathSound;
 
     void Start()
     {
@@ -26,6 +25,11 @@ public class MusicManager : MonoBehaviour
         StartCoroutine(WaitForClip(m_LowEnergyStinger));
         //m_TenseBGM.Play();
       
+    }
+
+    public void PlayDeathSound()
+    {
+        m_DeathSound.Play();
     }
 
     private IEnumerator WaitForClip(AudioSource audioClip)

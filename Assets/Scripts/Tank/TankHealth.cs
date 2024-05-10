@@ -70,6 +70,8 @@ public class TankHealth : MonoBehaviour
 
     private void OnDeath()
     {
+        m_MusicManager.PlayDeathSound();
+
         // Play the effects for the death of the tank and deactivate it.
         m_Dead = true;
 

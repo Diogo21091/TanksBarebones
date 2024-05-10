@@ -13,6 +13,8 @@ public class TankMovement : MonoBehaviour
     private float m_MovementInputValue;    
     private float m_TurnInputValue;
 
+    [SerializeField] private AudioSource m_MotorSound;
+
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
@@ -54,6 +56,9 @@ public class TankMovement : MonoBehaviour
     {
         // ----------- TODO ---------
         // Modify engine sound
+
+        m_MotorSound.pitch = m_PitchRange + m_MovementInputValue * m_Speed * Time.deltaTime;
+
     }
 
 
