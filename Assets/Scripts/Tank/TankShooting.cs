@@ -19,6 +19,10 @@ public class TankShooting : MonoBehaviour
 
     [SerializeField] private AudioSource m_ChargingSound;
 
+    [SerializeField] private int m_NumberOfFireSounds;
+    [SerializeField] private AudioSource m_FiringSound;
+    [SerializeField] private AudioClip[] m_FireClips;
+
     private void OnEnable()
     {
         m_CurrentLaunchForce = m_MinLaunchForce;
@@ -51,7 +55,7 @@ public class TankShooting : MonoBehaviour
             m_Fired = false;
             m_CurrentLaunchForce = m_MinLaunchForce;
 
-            //Play charging shot sound
+            //Play charging soud
             m_ChargingSound.Play();
         }
         else if(Input.GetButton(m_FireButton) && !m_Fired)
@@ -78,5 +82,22 @@ public class TankShooting : MonoBehaviour
         shellInstance.velocity = m_CurrentLaunchForce * m_FireTransform.forward;
 
         m_CurrentLaunchForce = m_MinLaunchForce;
+
+        //Stop charging sound and play shooting sound
+        m_ChargingSound.Stop();
+        PlayShootingSound();
+    }
+
+    private void PlayShootingSound()
+    {
+        int soundToPlay;
+
+        soundToPlay = Random.Range(0, m_NumberOfFireSounds);
+
+        foreach(AudioClip value in m_FireClips)
+        {
+            Debug.Log(value);
+        }
+        m_FiringSound.PlayOneShot(m_FireClips[soundToPlay], 1);
     }
 }

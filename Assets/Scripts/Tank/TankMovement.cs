@@ -57,7 +57,7 @@ public class TankMovement : MonoBehaviour
         // ----------- TODO ---------
         // Modify engine sound
 
-        m_MotorSound.pitch = m_PitchRange + m_MovementInputValue * m_Speed * Time.deltaTime;
+        m_MotorSound.pitch = m_PitchRange +  Mathf.Abs((((m_MovementInputValue + m_TurnInputValue) * m_Speed) / 6)); 
 
     }
 
